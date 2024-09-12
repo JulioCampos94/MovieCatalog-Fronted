@@ -1,0 +1,15 @@
+<div class="modal-overlay" *ngIf="isOpen" (click)="close()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <h2>Available Movies</h2>
+    <ul>
+      <li *ngFor="let movie of movies">
+        <h3>{{ movie.title }}</h3>
+        <p>Actors: {{ movie.actors }}</p>
+        <p>Synopsis: {{ movie.synopshis }}</p>
+        <p>Categories: {{movie.categories}}</p>
+        <img [src]="movie.image" alt="{{ movie.title }}" class="movie-image"/>
+      </li>
+    </ul>
+    <button class="button-primary" (click)="close()">Close</button>
+  </div>
+</div>

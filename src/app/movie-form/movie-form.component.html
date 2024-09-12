@@ -1,0 +1,17 @@
+<h2>{{ isNew ? 'Add New Movie' : 'Edit Movie' }}</h2>
+<form (ngSubmit)="save()">
+  <label>
+    Title:
+    <input [(ngModel)]="movie.title" name="title" required>
+  </label>
+  <label>
+    Director:
+    <input [(ngModel)]="movie.genre" name="genre" required>
+  </label>
+  <label>
+    Release Year:
+    <input [(ngModel)]="movie.releaseDate" name="releaseDate" required>
+  </label>
+  <button type="submit">{{ isNew ? 'Add Movie' : 'Save Changes' }}</button>
+</form>
+<a [routerLink]="['/movies']">Back to Movie List</a>

@@ -1,0 +1,150 @@
+<div class="container">
+  <h1>Movie Catalog</h1>
+
+  <div class="section">
+    <h2>Show Available Movies</h2>
+    <button (click)="openMoviesDialog()" class="button-primary">Show</button>
+  </div>
+
+  <div class="section">
+    <h2>Search Movie</h2>
+    <input [(ngModel)]="searchTitle" placeholder="Enter movie title" class="input-field" />
+    <button (click)="searchMovie()" class="button-primary">Search</button>
+  </div>
+
+  <div class="section">
+    <h2>Edit Movie</h2>
+    <form (ngSubmit)="updateMovie()">
+      <label>
+        Title:
+        <input
+          name="title"
+          [(ngModel)]="editMovie.title"
+          (blur)="onTitleBlur()"
+          placeholder="Enter movie title"
+          class="input-field"
+          required
+        />
+      </label>
+      <label>
+        Actors:
+        <input
+          name="actors"
+          [(ngModel)]="editMovie.actors"
+          class="input-field"
+          required
+        />
+      </label>
+      <label>
+        Synopsis:
+        <input
+          name="synopsis"
+          [(ngModel)]="editMovie.synopshis"
+          class="input-field"
+          required
+        />
+      </label>
+      <label>
+        Image URL:
+        <input
+          name="image"
+          [(ngModel)]="editMovie.image"
+          class="input-field"
+          required
+        />
+      </label>
+      <label>
+        Categories:
+        <div class="category-container">
+          <div class="category-list">
+            <div *ngFor="let category of editMovie.categories; let i = index" class="category-item-wrapper">
+              <div class="category-item">
+                <span class="category-text">{{ category }}</span>
+                <div>
+                <button type="button" (click)="removeCategoryFromEditMovie(category)" class="remove-category-button">x</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="add-category-container">
+            <button type="button" (click)="addCategoryToEditMovie()" class="button-primary">Add Category</button>
+          </div>
+        </div>
+      </label>
+      <button type="submit" class="button-primary">Update Movie</button>
+    </form>
+  </div>
+
+  <div class="section">
+    <h2>Add New Movie</h2>
+    <form (ngSubmit)="addMovie()">
+      <label>
+        Title:
+        <input
+          name="title"
+          [(ngModel)]="newMovie.title"
+          class="input-field"
+          required
+        />
+      </label>
+      <label>
+        Actors:
+        <input
+          name="actors"
+          [(ngModel)]="newMovie.actors"
+          class="input-field"
+          required
+        />
+      </label>
+      <label>
+        Synopsis:
+        <input
+          name="synopsis"
+          [(ngModel)]="newMovie.synopshis"
+          class="input-field"
+          required
+        />
+      </label>
+      <label>
+        Image URL:
+        <input
+          name="image"
+          [(ngModel)]="newMovie.image"
+          class="input-field"
+          required
+        />
+      </label>
+      <label>
+        Categories:
+        <div class="category-container">
+          <div class="category-list">
+            <div *ngFor="let category of newMovie.categories; let i = index" class="category-item-wrapper">
+              <div class="category-item">
+                <span class="category-text">{{ category }}</span>
+                <button type="button" (click)="removeCategoryFromNewMovie(category)" class="remove-category-button">x</button>
+              </div>
+            </div>
+          </div>
+          <div class="add-category-container">
+            <button type="button" (click)="addCategoryToNewMovie()" class="button-primary">Add Category</button>
+          </div>
+        </div>
+      </label>
+      <button type="submit" class="button-primary">Add Movie</button>
+    </form>
+  </div>
+
+  <div class="section">
+    <h2>Delete Movie</h2>
+    <input [(ngModel)]="deleteTitle" placeholder="Enter movie title" class="input-field" />
+    <button (click)="deleteMovie()" class="button-primary">Delete Movie</button>
+  </div>
+
+  <app-movie-modal
+    [movies]="movies"
+    [isOpen]="isModalOpen"
+    (closeModal)="closeMoviesDialog()">
+  </app-movie-modal>
+
+  <app-movie-search-modal [movie]="movieToShow"></app-movie-search-modal>
+</div>

@@ -1,0 +1,11 @@
+<div class="modal" *ngIf="movie">
+    <div class="modal-content">
+      <span class="close" (click)="close()">&times;</span>
+      <h2>Title: {{ movie.title }}</h2>
+      <p><strong>Actors:</strong> {{ movie.actors }}</p>
+      <p><strong>Synopsis:</strong> {{ movie.synopshis }}</p>
+      <p><strong>Categories:</strong> {{movie.categories}}</p>
+      <img [src]="movie.image" alt="{{ movie.title }}" class="movie-image" />
+    </div>
+  </div>
+  
